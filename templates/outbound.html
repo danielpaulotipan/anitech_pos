@@ -1,0 +1,73 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %} Inventory {% endblock %}
+{% block content %}
+
+<h2>Outbound</h2>
+    <form class="form" method="POST" action="/outbound" onsubmit="return confirm('Are you sure you want to submit?');">
+        <div class="card-group">
+       {{ form.hidden_tag() }}
+            <div class="card">
+                <div class="card-body">
+       {{ wtf.form_field(form.tryx) }}
+       {{ wtf.form_field(form.sale_date) }}
+       {{ wtf.form_field(form.sale_time) }}
+       {{ wtf.form_field(form.customer) }}
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+       {{ wtf.form_field(form.produce) }}
+       {{ wtf.form_field(form.prod_typ) }}
+       {{ wtf.form_field(form.sellprice) }}
+       {{ wtf.form_field(form.kilos) }}
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+
+       {{ wtf.form_field(form.comments) }}
+       {{ wtf.form_field(form.person) }}
+                </div>
+            </div>
+
+<br>
+    </div>
+    <button class="btn btn-success btn-lg btn-block" type="submit"> Input </button>
+</form>
+
+
+<table class="table">
+         <thead class="thead-dark">
+            <tr>
+               <th>Sale Date</th>
+               <th>Customer</th>
+               <th>Produce</th>
+               <th>Product Type</th>
+               <th>Sell Price</th>
+                <th>Kilos</th>
+                <th>Comments</th>
+                <th>Trial?</th>
+                <th>PiC</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for item in data %}
+               <tr>
+                  <td>{{ item.sale_date }}</td>
+                  <td>{{ item.customer }}</td>
+                   <td>{{ item.produce }}</td>
+                  <td>{{ item.prod_typ }}</td>
+                  <td>{{ item.sellprice }}</td>
+                  <td>{{ item.kilos }}</td>
+                  <td>{{ item.comments }}</td>
+                  <td>{{ item.tryx }}</td>
+                   <td>{{ item.person }}</td>
+
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+
+{% endblock %}

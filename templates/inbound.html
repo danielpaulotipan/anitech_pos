@@ -1,0 +1,74 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %} Inventory {% endblock %}
+{% block content %}
+
+<h2>Inbound</h2>
+      <form class="form" method="POST" action="/inbound" onsubmit="return confirm('Are you sure you want to submit?');">
+        <div class="card-group">
+       {{ form.hidden_tag() }}
+            <div class="card">
+                <div class="card-body">
+       {{ wtf.form_field(form.tryx) }}
+       {{ wtf.form_field(form.buy_date) }}
+       {{ wtf.form_field(form.buy_time) }}
+       {{ wtf.form_field(form.supplier) }}
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+
+       {{ wtf.form_field(form.produce) }}
+       {{ wtf.form_field(form.prod_typ) }}
+       {{ wtf.form_field(form.buyprice) }}
+       {{ wtf.form_field(form.kilos) }}
+                </div>
+            </div>
+            <div class="card">
+                <div class="card-body">
+       {{ wtf.form_field(form.comments) }}
+       {{ wtf.form_field(form.person) }}
+       {{ wtf.form_field(form.measure) }}
+       {{ wtf.form_field(form.sensor) }}
+                </div>
+            </div>
+<br>
+        </div>
+    <button class="btn btn-success btn-lg btn-block" type="submit"> Input </button>
+    </form>
+
+
+
+<table class="table">
+         <thead class="thead-dark">
+            <tr>
+               <th>Buy Date</th>
+               <th>Supplier</th>
+               <th>Produce</th>
+                <th>Produce Type</th>
+               <th>Buy Price</th>
+                <th>Kilos</th>
+                <th>Comments</th>
+                <th>Trial?</th>
+                <th>Person</th>
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for item in data %}
+               <tr>
+                  <td>{{ item.buy_date }}</td>
+                  <td>{{ item.supplier }}</td>
+                  <td>{{ item.produce }}</td>
+                   <td>{{ item.prod_typ }}</td>
+                  <td>{{ item.buyprice }}</td>
+                  <td>{{ item.kilos }}</td>
+                   <td>{{ item.comments }}</td>
+                   <td>{{ item.tryx }}</td>
+                   <td>{{ item.person }}</td>
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+
+{% endblock %}

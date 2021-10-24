@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+{% import "bootstrap/wtf.html" as wtf %}
+{% block title %} Anitech - RQ Data {% endblock %}
+{% block content %}
+<table class="table">
+         <thead class="thead-dark">
+            <tr>
+                <th>Date</th>
+               <th>CO2 in PPM</th>
+               <th>O2 in % Vol</th>
+                <th>Temperature in C</th>
+                <th>Humidity %%</th>
+                <th>Box</th>
+
+            </tr>
+         </thead>
+
+         <tbody>
+            {% for item in data %}
+               <tr>
+                  <td>{{ item.date }}</td>
+                  <td>{{ item.co2x }}</td>
+                  <td>{{ item.o2xx }}</td>
+                  <td>{{ item.temp }}</td>
+                  <td>{{ item.humi }}</td>
+                  <td>{{ item.boxx }}</td>
+
+               </tr>
+            {% endfor %}
+         </tbody>
+      </table>
+{% endblock %}
